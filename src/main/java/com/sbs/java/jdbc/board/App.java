@@ -1,8 +1,21 @@
 package com.sbs.java.jdbc.board;
 
+import com.sbs.java.jdbc.board.article.Article;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
+  public int articleLastId;
+  public List<Article> articleList;
+
+  public App() {
+    articleLastId = 0;
+    articleList = new ArrayList<>();
+
+  }
+
   // 로직의 시작점
   public void run(){
     Scanner sc = new Scanner(System.in);
@@ -25,7 +38,13 @@ public class App {
         String content = sc.nextLine();
 
         int id = ++articleLastId;
-        System.out.printf("%d번 게시물이 생성되었습니다.\n", id);
+
+        Article article = new Article(id, subject, content);
+        articleList.add(article);
+
+        System.out.println(article);
+
+        System.out.printf("%d번 게시물이 생성되었습니다.\n", article.getId());
       }
       else if(cmd.equals("/usr/article/list")) {
         System.out.println("게시물 리스트");

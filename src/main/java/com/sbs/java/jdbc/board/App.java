@@ -47,7 +47,15 @@ public class App {
         System.out.printf("%d번 게시물이 생성되었습니다.\n", article.getId());
       }
       else if(cmd.equals("/usr/article/list")) {
-        System.out.println("게시물 리스트");
+        if(articleList.isEmpty()) {
+          System.out.println("게시물이 존재하지 않습니다.");
+          continue;
+        }
+        System.out.println("== 게시물 리스트 ==");
+        for(int i = 0; i < articleList.size(); i++) {
+          Article article = articleList.get(i);
+          System.out.printf("id : %d | subject: %s\n", article.getId(), article.getSubject());
+        }
       }
       else if(cmd.equals("break")) {
         System.out.println("프로그램을 종료 합니다.");

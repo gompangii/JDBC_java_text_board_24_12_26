@@ -3,8 +3,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class JDBCConnectTest {  // 연결 테스트
-  //private  static  final String DB_URL = "jdbc:mysql://192.168.56.40:3306/text_board?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull"; // 데이터베이스 URL
-  private  static  final String DB_URL = "jdbc:mysql://192.168.56.40:3306/text_board";
+  //private  static  final String DB_URL = "jdbc:mysql://mariadb.mypc.myvbox:3306/text_board?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeBehavior=convertToNull"; // 데이터베이스 URL
+  private  static  final String DB_URL = "jdbc:mysql://mariadb.mypc.myvbox:3306/text_board";
   private  static  final String DB_USER = "root"; // MariaDB 사용자 이름
   private  static  final String DB_PASSWORD = "mariadb"; // MariaDB 비밀번호
 

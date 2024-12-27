@@ -35,7 +35,9 @@ public class App {
       System.out.print("명령) ");
       String cmd = sc.nextLine();
 
-      if(cmd.equals("/usr/article/write")) {
+      Rq rq = new Rq(cmd);
+
+      if(rq.getUrlPath().equals("/usr/article/write")) {
         System.out.println("== 게시물 작성 ==");
 
         System.out.print("제목 : ");
@@ -95,7 +97,7 @@ public class App {
 
 
       }
-      else if(cmd.equals("/usr/article/list")) {
+      else if(rq.getUrlPath().equals("/usr/article/list")) {
         Connection conn = null;
         PreparedStatement pstat = null;
         ResultSet rs = null;
@@ -152,7 +154,62 @@ public class App {
             System.out.printf("%d | %s\n", article.getId(), article.getSubject()));
 
       }
-      else if(cmd.equals("break")) {
+      else if(rq.getUrlPath().equals("/usr/article/modify")) {
+        int id = rq.getIntParam("id", 0);
+        if (id == 0) {
+          System.out.println("id를 올바르게 입력해주세요.");
+          continue;
+        }
+        System.out.println("== 게시물 수정 ==");
+        System.out.print("제목 : ");
+        String subject = sc.nextLine();
+
+        System.out.print("내용 : ");
+        String content = sc.nextLine();
+
+        Connection conn = null;
+        PreparedStatement pstat = null;
+
+        try {
+          // JDBC 드라이버 로드
+          Class.forName("com.mysql.cj.jdbc.Driver");
+
+          conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+
+          System.out.println("데이터 베이스 연결 성공!");
+
+          String sql = "UPDATE article";
+          sql += " SET updateDate = NOW()";
+          sql += ", `subject` = '%s'".formatted(subject);
+          sql += ", content = '%s'".formatted(content);
+          sql += " WHERE id = %d ;".formatted(id);
+
+          System.out.println(sql);
+
+          pstat = conn.prepareStatement(sql);
+          // 쿼리 실행
+          pstat.executeUpdate();
+          System.out.printf("%d번 게시물이 수정되었습니다.\n", id);
+
+        } catch (ClassNotFoundException e) {
+          System.err.println("JDBC 드라이버를 찾지 못했습니다.");
+          e.printStackTrace();
+        } catch (SQLException e) {
+          System.out.println("데이터 베이스 연결 실패");
+          e.printStackTrace();
+        } finally {
+          try {
+            if (pstat != null && !pstat.isClosed()) pstat.close();
+            if (conn != null && !conn.isClosed()) {
+              conn.close();  // 데이터 베이스 연결 해제
+              System.out.println("데이터베이스 연결이 해제되었습니다.");
+            }
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+      else if(rq.getUrlPath().equals("break")) {
         System.out.println("프로그램을 종료 합니다.");
         break;
       }

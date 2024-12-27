@@ -47,7 +47,7 @@ public class JDBCSelectTest {  // 연결 테스트
       }
 
       System.out.println("결과 : " + articles);
-      
+
     } catch (ClassNotFoundException e) {
       System.err.println("JDBC 드라이버를 찾지 못했습니다.");
       e.printStackTrace();

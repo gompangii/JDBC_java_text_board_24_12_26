@@ -18,7 +18,6 @@ public class App {
   public ArticleController articleController;
 
   public App() {
-
     articleController = Container.articleController;
   }
 
@@ -53,21 +52,20 @@ public class App {
       System.out.println("== 자바 텍스트 게시판 종료 ==");
       sc.close();
     }
-
   }
 
   private void doAction(Rq rq) {
-    if(rq.getUrlPath().equals("/usr/article/write")) {
+    if (rq.getUrlPath().equals("/usr/article/write")) {
       articleController.doWrite();
-    } else if(rq.getUrlPath().equals("/usr/article/list")) {
+    } else if (rq.getUrlPath().equals("/usr/article/list")) {
       articleController.showList();
-    } else if(rq.getUrlPath().equals("/usr/article/detail")) {
+    } else if (rq.getUrlPath().equals("/usr/article/detail")) {
       articleController.showDetail(rq);
-    } else if(rq.getUrlPath().equals("/usr/article/modify")) {
+    } else if (rq.getUrlPath().equals("/usr/article/modify")) {
       articleController.doModify(rq);
-    } else if(rq.getUrlPath().equals("/usr/article/delete")) {
+    } else if (rq.getUrlPath().equals("/usr/article/delete")) {
       articleController.doDelete(rq);
-    } else if(rq.getUrlPath().equals("exit")) {
+    } else if (rq.getUrlPath().equals("exit")) {
       System.out.println("프로그램을 종료 합니다.");
       System.exit(0);  // 프로그램 강제종료
     } else {

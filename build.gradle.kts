@@ -15,6 +15,7 @@ dependencies {
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     //implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
     implementation("mysql:mysql-connector-java:8.0.33")
+    compileOnly("org.projectlombok:lombok:1.18.36")
 }
 
 tasks.test {

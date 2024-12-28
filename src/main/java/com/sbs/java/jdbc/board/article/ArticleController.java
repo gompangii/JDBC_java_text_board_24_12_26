@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class ArticleController {
-  private ArticleService articleService;
+  private final ArticleService articleService;
   public Scanner sc;
 
   public  ArticleController() {

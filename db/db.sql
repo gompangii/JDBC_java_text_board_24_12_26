@@ -1,4 +1,4 @@
-# 방구석 코딩 JDBC 자바 텍스트 게시판 구현 강좌
+# 방구석 코딩 JDBC 자바 텍스트 게시판 구현 강좌(https://github.com/SangWon7242)
 # 데이터 베이스  삭제/생성/선택
 DROP DATABASE IF EXISTS text_board;
 CREATE DATABASE text_board;

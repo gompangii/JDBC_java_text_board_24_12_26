@@ -18,6 +18,14 @@ public class Article {
   private String subject;
   private String content;
 
+  public Article(Map<String, Object> articleMap) {
+    this.id = (int) articleMap.get("id");
+    this.regDate = (LocalDateTime) articleMap.get("regDate");
+    this.updateDate = (LocalDateTime) articleMap.get("updateDate");;
+    this.subject = (String) articleMap.get("subject");;
+    this.content = (String) articleMap.get("content");;
+  }
+
   public int getId() {
     return id;
   }
@@ -50,11 +58,5 @@ public class Article {
     this.content = content;
   }
 
-  public Article(Map<String, Object> articleMap) {
-    this.id = (int) articleMap.get("id");
-    this.regDate = (LocalDateTime) articleMap.get("regDate");
-    this.updateDate = (LocalDateTime) articleMap.get("updateDate");;
-    this.subject = (String) articleMap.get("subject");;
-    this.content = (String) articleMap.get("content");;
-  }
+
 }

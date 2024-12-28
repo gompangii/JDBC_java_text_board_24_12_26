@@ -5,6 +5,7 @@ import com.sbs.java.jdbc.board.article.ArticleController;
 import com.sbs.java.jdbc.board.container.Container;
 import com.sbs.java.jdbc.board.dbUtil.MysqlUtil;
 import com.sbs.java.jdbc.board.dbUtil.SecSql;
+import com.sbs.java.jdbc.board.member.MemberController;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -16,9 +17,11 @@ import java.util.Scanner;
 public class App {
 
   public ArticleController articleController;
+  public MemberController memberController;
 
   public App() {
     articleController = Container.articleController;
+    memberController = Container.memberController;
   }
 
   private static boolean isDevMode() {
@@ -65,6 +68,8 @@ public class App {
       articleController.doModify(rq);
     } else if (rq.getUrlPath().equals("/usr/article/delete")) {
       articleController.doDelete(rq);
+    } else if (rq.getUrlPath().equals("/usr/member/join")) {
+      memberController.doJoin(rq);
     } else if (rq.getUrlPath().equals("exit")) {
       System.out.println("프로그램을 종료 합니다.");
       System.exit(0);  // 프로그램 강제종료
